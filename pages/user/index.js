@@ -1,16 +1,19 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useQuery, gql } from "@apollo/client";
 import Link from "next/link";
 import { GET_USERS } from "@/api/query/user";
 
 const UserList = () => {
   const { loading, error, data } = useQuery(GET_USERS);
+  const [refresh, setRefresh] = useState(true);
+  const users = data.users;
+  useEffect(() => {}, [users]);
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Some Error Occured!</p>;
   return (
     <div>
       <h2>All Users will be Displayed Here</h2>
-      {data.users.map((user) => {
+      {users.map((user) => {
         return (
           <div key={user.id}>
             <Link href={`/user/${user.id}`}>
@@ -21,6 +24,9 @@ const UserList = () => {
           </div>
         );
       })}
+      <Link href="user/create">
+        <button>Create</button>
+      </Link>
     </div>
   );
 };
