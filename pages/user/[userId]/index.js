@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import { gql } from "apollo-boost";
 import { useQuery } from "@apollo/client";
 import { GET_USER } from "@/api/query/user";
+import Link from "next/link";
 
 const UserDetail = () => {
   const router = useRouter();
@@ -22,11 +23,17 @@ const UserDetail = () => {
   return (
     <div>
       <h2>User Detail Page</h2>
-      <p>{userId}</p>
       {user ? (
         <>
-          <p>Username: {user.username}</p>
-          <p>Email: {user.email}</p>
+          <h5>User ID: {user.id}</h5>
+          <h5>Username: {user.username}</h5>
+          <h5>Email: {user.email}</h5>
+          <Link href={`update/${userId}`}>
+            <button>Update User</button>
+          </Link>
+          <Link href={`delete/${userId}`}>
+            <button>Delete User</button>
+          </Link>
         </>
       ) : (
         <p>No user found with ID {id}</p>

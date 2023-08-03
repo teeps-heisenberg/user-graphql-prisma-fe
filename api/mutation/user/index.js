@@ -8,3 +8,23 @@ export const CREATE_USER = gql`
     }
   }
 `;
+
+export const UPDATE_USER = gql`
+  mutation UpdateUser($id: Int!, $updateArgs: UpdateUserArgs!) {
+    updateUser(bookId: $id, updateUserArgs: $updateArgs) {
+      id
+      username
+      email
+    }
+  }
+`;
+
+export const DELETE_USER = gql`
+  mutation DeleteUser($id: Int!) {
+    deleteUserById(bookId: $id) {
+      id
+      username
+      email
+    }
+  }
+`;

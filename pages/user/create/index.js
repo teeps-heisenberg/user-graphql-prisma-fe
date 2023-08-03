@@ -25,6 +25,8 @@ const UserCreatePage = () => {
       .catch((error) => {
         alert(error);
       });
+    setEmail("");
+    setUsername("");
   };
 
   return (
